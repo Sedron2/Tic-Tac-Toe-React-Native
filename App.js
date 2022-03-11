@@ -1,20 +1,59 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { HomeScreen } from "./src/screens/HomeScreen";
+import { GameScreen } from "./src/screens/GameScreen";
+import { GameContext, GameProvider } from './src/Context/GameContext';
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "indianred",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
+
+export default function App() {
+	return (
+	<GameProvider>
+		<GameContext.Consumer>{ ({ gameReady }) => (
+			<NavigationContainer>
+				<Tab.Navigator
+				initialRouteName="Juego"
+				screenOptions={({ route }) => ({
+					tabBarIcon: ({ focused, color, size }) => {
+						let iconName;
+						if (route.name === "Inicio") {
+							iconName = focused ? "ios-ellipsis-horizontal" : "ios-ellipsis-horizontal-outline";
+						} else if (route.name === "Juego") {
+							iconName = focused ? "game-controller" : "game-controller-outline";
+						}
+						return <Ionicons name={iconName} size={size} color={color} />;
+						},
+						tabBarActiveTintColor: "gold",
+						tabBarInactiveTintColor: "grey",
+						tabBarStyle: { backgroundColor: '#1E2C37', borderTopColor: "transparent", },
+						headerStyle: {
+							backgroundColor: '#1E2C37',
+						},
+						headerTintColor: '#fff',
+						headerTitleStyle: {
+							textAlign: 'center',
+						},
+					})}
+				>
+					<Tab.Screen name="Inicio" component={HomeScreen}/>
+					<Tab.Screen name="Juego" component={GameScreen}/>
+				</Tab.Navigator>
+			</NavigationContainer>
+		)}</GameContext.Consumer>
+	</GameProvider>
+	);
+}
