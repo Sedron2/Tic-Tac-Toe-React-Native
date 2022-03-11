@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
 
 
 function GameScreen(props) {
-	const { gameReady } = React.useContext(GameContext);
+	const { gameReady, playingWithPC } = React.useContext(GameContext);
 	if (gameReady){
 		return (
 			<View style={styles.container}>
 				<View style={styles.header}>
 					<GamePlayers player1="Tu" player2="PC" />
-					<GameRetry />
+					{ playingWithPC && <GameRetry />}
 				</View>
 				<GamePad />
 			</View>

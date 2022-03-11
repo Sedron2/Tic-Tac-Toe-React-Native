@@ -10,8 +10,9 @@ function GameProvider(props) {
     ]
     const [board, setBoard] = React.useState([...defaultBoard])
     const [turn, setTurn] = React.useState('x')
-    const [gameReady, setGameReady] = React.useState(true);
-    const [color1, color2] = ['gold', 'aquamarine'];
+    const [gameReady, setGameReady] = React.useState(false);
+    const [playingWithPC, setPlayingWithPC] = React.useState(false);
+    const [color1, color2, color3 ] = ['#FFFFFF', '#9FD19D', 'gold'];
     return (
         <GameContext.Provider value={{
             turn,
@@ -21,8 +22,11 @@ function GameProvider(props) {
             defaultBoard,
             color1,
             color2,
+            color3,
             gameReady,
             setGameReady,
+            playingWithPC, 
+            setPlayingWithPC,
         }}>
             {props.children}
         </GameContext.Provider>

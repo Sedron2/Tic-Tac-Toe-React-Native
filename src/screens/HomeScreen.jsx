@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { GameContext } from '../Context/GameContext';
+import { GameContext, GameProvider } from '../Context/GameContext';
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { HomeHeader } from '../Components/HomeHeader';
+import { HomePlay } from '../Components/HomePlay';
 
 
 
@@ -12,24 +15,29 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	text: {
-        fontSize: 16,
-        color: '#ffffff', 
+	header: {
+        fontSize: 45,
         fontWeight: 'bold',
+		fontFamily: 'monospace',
+		color: '#FFF',
     },
 	pressable: {
 		backgroundColor: 'gold',
+		
 	}
 });
 
 
 function HomeScreen(props) {
-
 	return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Bienvenido a la home screen</Text>
-            <Pressable title="Ir a jugar xd" onPress={() => props.navigation.navigate('Juego')}/>
-        </View>
+		<GameProvider>
+			<GameContext.Consumer>{({ color1, color2, color3 }) => (
+				<View style={styles.container}>
+					<HomeHeader />
+					<HomePlay color={color2} player="PC"/>
+				</View>
+			)}</GameContext.Consumer>
+		</GameProvider>
 	);
 }
 

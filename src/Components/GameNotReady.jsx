@@ -1,4 +1,5 @@
 import React from 'react';
+import Ionicons from "react-native-vector-icons/FontAwesome5";
 import { View, Text, Modal, StyleSheet, Pressable } from 'react-native';
 import { GameContext } from '../Context/GameContext';
 

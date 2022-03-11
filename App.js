@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 export default function App() {
 	return (
 	<GameProvider>
-		<GameContext.Consumer>{ ({ gameReady }) => (
+		<GameContext.Consumer>{ ({ gameReady, color1, color2, color3 }) => (
 			<NavigationContainer>
 				<Tab.Navigator
 				initialRouteName="Juego"
@@ -37,7 +37,7 @@ export default function App() {
 						}
 						return <Ionicons name={iconName} size={size} color={color} />;
 						},
-						tabBarActiveTintColor: "gold",
+						tabBarActiveTintColor: color3,
 						tabBarInactiveTintColor: "grey",
 						tabBarStyle: { backgroundColor: '#1E2C37', borderTopColor: "transparent", },
 						headerStyle: {
