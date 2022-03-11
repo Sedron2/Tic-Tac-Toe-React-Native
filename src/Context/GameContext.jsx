@@ -13,6 +13,8 @@ function GameProvider(props) {
     const [gameReady, setGameReady] = React.useState(false);
     const [playingWithPC, setPlayingWithPC] = React.useState(false);
     const [color1, color2, color3 ] = ['#FFFFFF', '#9FD19D', 'gold'];
+
+
     return (
         <GameContext.Provider value={{
             turn,

@@ -12,15 +12,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text: {
-        color: 'grey',
+        color: '#494949',
         fontWeight: 'bold',
         fontSize: 18,
     }
 })
 
 function HomePlay(props) {
+    const { setGameReady, setPlayingWithPC } = React.useContext(GameContext);
     return(
-        <Pressable style={[styles.button, {backgroundColor: props.color}]}>
+        <Pressable 
+            style={[styles.button, {backgroundColor: props.color}]} 
+            onPress={() => {
+                setGameReady(true); 
+                if (props.player === 'PC'){
+                    setPlayingWithPC(true)
+                }
+                props.navigation.navigate('Juego')
+            }}
+        >
             <Text style={styles.text}>Jugar vs. {props.player}</Text>
         </Pressable>
     )

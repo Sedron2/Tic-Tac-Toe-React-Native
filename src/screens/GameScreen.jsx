@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 
 function GameScreen(props) {
 	const { gameReady, playingWithPC } = React.useContext(GameContext);
+	console.log(gameReady)
 	if (gameReady){
 		return (
 			<View style={styles.container}>

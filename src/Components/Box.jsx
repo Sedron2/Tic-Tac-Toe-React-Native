@@ -11,6 +11,7 @@ const style = StyleSheet.create({
         flex: 1,
         borderRadius: 8,
         margin: 13,
+        backgroundColor: '#1f3643',
         shadowColor: "#000",
         elevation: 10,
     }
@@ -21,7 +22,7 @@ function Box(props){
     const name = board[Number(props.id)]
     return (
         <Pressable 
-            onPress={() => {
+            onPressIn={() => {
                 if (name === ''){
                     let copyBoard = [...board];
                     copyBoard[Number(props.id)] = turn;
@@ -29,14 +30,7 @@ function Box(props){
                     setTurn(turn === 'x' ? 'o' : 'x');
                 }
             }} 
-            style={( { pressed } ) => [
-                {
-                    backgroundColor: pressed
-                    ? '#446F84' 
-                    : '#1f3643'
-                },
-                style.box
-            ]}>
+            style={style.box}>
             <Ionicons 
             style={{
                 color: name === 'x' ? color1: color2, 

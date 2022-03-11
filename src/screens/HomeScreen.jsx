@@ -29,15 +29,16 @@ const styles = StyleSheet.create({
 
 
 function HomeScreen(props) {
+	const { color2 } = React.useContext(GameContext)
 	return (
-		<GameProvider>
-			<GameContext.Consumer>{({ color1, color2, color3 }) => (
-				<View style={styles.container}>
-					<HomeHeader />
-					<HomePlay color={color2} player="PC"/>
-				</View>
-			)}</GameContext.Consumer>
-		</GameProvider>
+		<View style={styles.container}>
+			<HomeHeader />
+			<HomePlay 
+				color={color2} 
+				player="PC" 
+				navigation={props.navigation}
+			/>
+		</View>
 	);
 }
 

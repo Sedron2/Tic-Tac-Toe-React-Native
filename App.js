@@ -26,7 +26,7 @@ export default function App() {
 		<GameContext.Consumer>{ ({ gameReady, color1, color2, color3 }) => (
 			<NavigationContainer>
 				<Tab.Navigator
-				initialRouteName="Juego"
+				initialRouteName="Inicio"
 				screenOptions={({ route }) => ({
 					tabBarIcon: ({ focused, color, size }) => {
 						let iconName;
